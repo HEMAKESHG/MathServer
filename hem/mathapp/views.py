@@ -1,19 +1,19 @@
 from django.shortcuts import render
-def rectarea(request):
+def squareprism(request):
     context={}
     context['area'] = "0"
-    context['l'] = "0"
     context['b'] = "0"
+    context['h'] = "0"
     if request.method == 'POST':
         print("POST method is used")
-        l = request.POST.get('length','0')
-        b = request.POST.get('breadth','0')
+        b = request.POST.get('base','0')
+        h = request.POST.get('height','0')
         print('request=',request)
-        print('Length=',l)
-        print('Breadth=',b)
-        area = int(l) * int(b)
+        print('Base=',b)
+        print('Height=',h)
+        area= 2*int(b)*int(b) + 4*int(h)*int(b)
         context['area'] = area
-        context['l'] = l
         context['b'] = b
-        print('Area=',area)
+        context['h'] = h
+        print('Surface area of square prism=',area)
     return render(request,'mathapp/math.html',context)
